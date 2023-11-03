@@ -80,5 +80,40 @@ namespace SuperCarGarage.Controllers
 
             return View(car);
         }
+
+        public IActionResult Delete(string id) {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var selectedCar = _carService.GetCarById(id);
+            return View(selectedCar);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(Car car)
+        {
+            if (car.Id == null)
+            {
+                ViewData["ErrorMessage"] = "Deleting the car failed, invalid ID!";
+                return View();
+            }
+
+            try
+            {
+                _carService.DeleteCar(car);
+                TempData["CarDeleted"] = "Car deleted successfully!";
+
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                ViewData["ErrorMessage"] = $"Deleting the car failed, please try again! Error: {ex.Message}";
+            }
+
+            var selectedCar = _carService.GetCarById(car.Id.ToString());
+            return View(selectedCar);
+        }
     }
 }

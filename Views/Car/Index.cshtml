@@ -1,5 +1,11 @@
 ﻿@model CarListViewModel
 
+@if (TempData["CarDeleted"] != null)
+{
+    <p class="text-success">@TempData["CarDeleted"]</p>
+}
+
+
 @if (!Model.Cars.Any())
 {
     <p>No results</p>

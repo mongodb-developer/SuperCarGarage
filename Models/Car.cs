@@ -19,6 +19,7 @@ namespace SuperCarGarage.Models
 
         [StringLength(10)]
         [Required(ErrorMessage = "The number plate is required to identify the vehicle")]
+        [Display(Name = "Number Plate")]
         public string NumberPlate { get; set; }
 
         [Required(ErrorMessage = "You must add the location of the car")]

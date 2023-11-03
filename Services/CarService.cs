@@ -56,6 +56,11 @@ namespace SuperCarGarage.Services
             if(carToDelete != null)
             {
                 _carDbContext.Cars.Remove(carToDelete);
+                _carDbContext.SaveChanges();
+            }
+            else
+            {
+                throw new ArgumentException("The car to delete cannot be found.");
             }
         }
     }
