@@ -1,0 +1,31 @@
+﻿@model CarAddViewModel
+
+<h2>Create a new car</h2>
+<hr />
+
+@if (ViewData["ErrorMessage"] != null)
+{
+    <p class="text-danger">@ViewData["ErrorMessage"]</p>
+}
+
+<form method="post" asp-controller="Car" asp-action="Add">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="mb-3">
+        <label asp-for="Car.Model" class="form-label"></label>
+        <input asp-for="Car.Model" class="form-control" />
+        <span asp-validation-for="Car.Model" class="text-danger"></span>
+    </div
+
+      <div class="mb-3">
+        <label asp-for="Car.Location" class="form-label"></label>
+        <input asp-for="Car.Location" class="form-control" />
+        <span asp-validation-for="Car.Location" class="text-danger"></span>
+    </div>
+
+    <input type="submit" value="Add car" class="btn btn-primary" />
+</form>
+
+<div>
+    <a asp-controller="Car" asp-action="Index">Back to list</a>
+</div>

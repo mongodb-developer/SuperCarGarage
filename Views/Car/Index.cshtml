@@ -1,0 +1,39 @@
+﻿@model CarListViewModel
+
+@if (!Model.Cars.Any())
+{
+    <p>No results</p>
+}
+else
+{
+    <table class="table table-condensed table-bordered">
+        <tr>
+            <th>
+                Model
+            </th>
+            <th>
+                Location
+            </th>
+            <th>
+                Actions
+            </th>
+        </tr>
+
+        @foreach (var car in Model.Cars)
+        {
+            <tr>
+                <td>@car.Model</td>
+                <td>@car.Location</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@car.Id.ToString()">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@car.Id.ToString()">Delete</a>
+                </td>
+            </tr>
+        }
+
+    </table>
+}
+
+<p>
+    <a class="btn btn-primary" asp-action="Add">Add new car</a>
+</p>

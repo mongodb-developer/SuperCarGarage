@@ -15,6 +15,5 @@ namespace SuperCarGarage.Models
         [StringLength(100)]        
         public string? Model { get; set; }
         public string? Location { get; set; }
-        public bool IsBooked { get; set; } = false;
     }
 }

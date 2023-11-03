@@ -11,8 +11,4 @@
     <PackageReference Include="MongoDB.EntityFrameworkCore" Version="7.0.0-preview.1" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Views\Car\" />
-  </ItemGroup>
-
 </Project>
