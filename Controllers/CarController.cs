@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MongoDB.Bson;
 using SuperCarGarage.Models;
 using SuperCarGarage.Services;
 using SuperCarGarage.ViewModels;
@@ -44,6 +45,40 @@ namespace SuperCarGarage.Controllers
             }
 
             return View(carAddViewModel);         
+        }
+
+        public IActionResult Edit(string id)
+        {
+            if(id == null)
+            {
+                return NotFound();
+            }
+
+            var selectedCar = _carService.GetCarById(id);
+            return View(selectedCar);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Car car)
+        {
+            try
+            {
+                if(ModelState.IsValid)
+                {
+                    _carService.EditCar(car);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", $"Updating the car failed, please try again! Error: {ex.Message}");
+            }
+
+            return View(car);
         }
     }
 }

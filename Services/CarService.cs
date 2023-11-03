@@ -32,7 +32,21 @@ namespace SuperCarGarage.Services
         public void EditCar(Car car)
         {
             var carToUpdate = _carDbContext.Cars.Where(c => c.Id == car.Id).FirstOrDefault();
-            _carDbContext.Update(carToUpdate);
+
+            if(carToUpdate != null)
+            {                
+                carToUpdate.Model = car.Model;
+                carToUpdate.NumberPlate = car.NumberPlate;
+                carToUpdate.Location = car.Location;
+
+                _carDbContext.Cars.Update(carToUpdate);
+                _carDbContext.SaveChanges();
+                    
+            }
+          else
+            {
+                throw new ArgumentException("The car to update cannot be found. ");
+            }
         }        
 
         public void DeleteCar(Car car)
