@@ -1,4 +1,5 @@
-﻿using MongoDB.Driver;
+﻿using Microsoft.EntityFrameworkCore;
+using MongoDB.Driver;
 using SuperCarBookingSystem.Services;
 using SuperCarGarage.Models;
 
@@ -14,12 +15,12 @@ namespace SuperCarGarage.Services
         public IEnumerable<Car> GetAllCars()
         {
             // MongoDB _id field can be used to order by chronological time
-            return _carDbContext.Cars.OrderBy(c => c.Id);
+            return _carDbContext.Cars.OrderBy(c => c.Id).AsNoTracking().ToList();
         }
 
         public Car? GetCarById(string id)
         {
-            return _carDbContext.Cars.Where(car => car.Id.ToString() == id).FirstOrDefault();
+            return _carDbContext.Cars.Where(car => car.Id.ToString() == id).AsNoTracking().FirstOrDefault();
         }
 
         public void AddCar(Car car)

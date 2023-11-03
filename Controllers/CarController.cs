@@ -30,14 +30,20 @@ namespace SuperCarGarage.Controllers
         [HttpPost]
         public IActionResult Add(CarAddViewModel carAddViewModel)
         {
-            Car newCar = new()
+            if(ModelState.IsValid)
             {
-                Model = carAddViewModel.Car.Model,
-                Location = carAddViewModel.Car.Location
-            };
+                Car newCar = new()
+                {
+                    Model = carAddViewModel.Car.Model,
+                    Location = carAddViewModel.Car.Location,
+                    NumberPlate = carAddViewModel.Car.NumberPlate
+                };
 
-            _carService.AddCar(newCar);
-            return RedirectToAction("Index");           
+                _carService.AddCar(newCar);
+                return RedirectToAction("Index");
+            }
+
+            return View(carAddViewModel);         
         }
     }
 }

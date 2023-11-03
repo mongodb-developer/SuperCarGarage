@@ -12,8 +12,11 @@ else
                 Model
             </th>
             <th>
-                Location
+                Number Plate
             </th>
+            <th>
+                Location
+            </th>            
             <th>
                 Actions
             </th>
@@ -23,7 +26,8 @@ else
         {
             <tr>
                 <td>@car.Model</td>
-                <td>@car.Location</td>
+                <td>@car.NumberPlate</td>
+                <td>@car.Location</td>                
                 <td>
                     <a asp-action="Edit" asp-route-id="@car.Id.ToString()">Edit</a>
                     <a asp-action="Delete" asp-route-id="@car.Id.ToString()">Delete</a>

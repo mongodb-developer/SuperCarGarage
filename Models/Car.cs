@@ -12,8 +12,16 @@ namespace SuperCarGarage.Models
        
         public ObjectId Id { get; set; }
 
-        [StringLength(100)]        
+        [StringLength(100)]
+        [Required(ErrorMessage = "You must provide the make and model")]
+        [Display(Name = "Make and Model")]
         public string? Model { get; set; }
+
+        [StringLength(10)]
+        [Required(ErrorMessage = "The number plate is required to identify the vehicle")]
+        public string NumberPlate { get; set; }
+
+        [Required(ErrorMessage = "You must add the location of the car")]
         public string? Location { get; set; }
     }
 }
