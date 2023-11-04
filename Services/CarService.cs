@@ -2,6 +2,7 @@
 using MongoDB.Driver;
 using SuperCarBookingSystem.Services;
 using SuperCarGarage.Models;
+using System.Text;
 
 namespace SuperCarGarage.Services
 {
@@ -26,6 +27,10 @@ namespace SuperCarGarage.Services
         public void AddCar(Car car)
         {
             _carDbContext.Cars.Add(car);
+
+            _carDbContext.ChangeTracker.DetectChanges();
+            Console.WriteLine(_carDbContext.ChangeTracker.DebugView.LongView);
+
             _carDbContext.SaveChanges();
         }
 
@@ -40,6 +45,10 @@ namespace SuperCarGarage.Services
                 carToUpdate.Location = car.Location;
 
                 _carDbContext.Cars.Update(carToUpdate);
+
+                _carDbContext.ChangeTracker.DetectChanges();
+                Console.WriteLine(_carDbContext.ChangeTracker.DebugView.LongView);
+
                 _carDbContext.SaveChanges();
                     
             }
@@ -56,6 +65,10 @@ namespace SuperCarGarage.Services
             if(carToDelete != null)
             {
                 _carDbContext.Cars.Remove(carToDelete);
+
+                _carDbContext.ChangeTracker.DetectChanges();
+                Console.WriteLine(_carDbContext.ChangeTracker.DebugView.LongView);
+
                 _carDbContext.SaveChanges();
             }
             else
