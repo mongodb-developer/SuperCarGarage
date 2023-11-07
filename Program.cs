@@ -13,7 +13,8 @@ var mongoDBSettings = builder.Configuration.GetSection("MongoDBSettings").Get<Mo
 builder.Services.Configure<MongoDBSettings>(builder.Configuration.GetSection("MongoDBSettings"));
 
 builder.Services.AddDbContext<CarBookingDbContext>(options =>
-options.UseMongoDB(mongoDBSettings.AtlasURI ?? "", mongoDBSettings.DatabaseName ?? ""));
+options.UseMongoDB(mongoDBSettings.AtlasURI ?? "", mongoDBSettings.DatabaseName ?? "")
+.EnableSensitiveDataLogging());
 
 
 builder.Services.AddScoped<ICarService, CarService>();

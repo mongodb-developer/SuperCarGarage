@@ -54,14 +54,14 @@ namespace SuperCarGarage.Controllers
                 return RedirectToAction("Index");   
         }
 
-        public IActionResult Edit(string bookingId)
+        public IActionResult Edit(string Id)
         {
-            if(bookingId == null)
+            if(Id == null)
             {
                 return NotFound();
             }
 
-            var selectedBooking = _bookingService.GetBookingById(bookingId);
+            var selectedBooking = _bookingService.GetBookingById(Id);
             return View(selectedBooking);
         }
 
@@ -70,14 +70,15 @@ namespace SuperCarGarage.Controllers
         {
             try
             {
-                if (ModelState.IsValid)
+                var existingBooking = _bookingService.GetBookingById(booking.Id.ToString());
+                if (existingBooking != null)
                 {
-                    _bookingService.EditBooking(booking);
+                    _bookingService.EditBooking(existingBooking);
                     return RedirectToAction("Index");
                 }
                 else
                 {
-                    return BadRequest();
+                    ModelState.AddModelError("", $"Booking with ID {booking.Id} does not exist!");
                 }
             }
             catch (Exception ex)
@@ -88,14 +89,14 @@ namespace SuperCarGarage.Controllers
             return View(booking);
         }
 
-        public IActionResult Delete(string bookingId)
+        public IActionResult Delete(string Id)
         {
-            if (bookingId == null)
+            if (Id == null)
             {
                 return NotFound();
             }
 
-            var selectedBooking = _bookingService.GetBookingById(bookingId);
+            var selectedBooking = _bookingService.GetBookingById(Id);
             return View(selectedBooking);
         }
 

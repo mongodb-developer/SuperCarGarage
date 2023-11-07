@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MongoDB.Bson;
+using SharpCompress.Common;
 using SuperCarBookingSystem.Services;
 using SuperCarGarage.Models;
 
@@ -59,21 +60,28 @@ namespace SuperCarGarage.Services
 
         public void EditBooking(Booking updatedBooking)
         {
-            var bookingToUpdate = _carDbContext.Bookings.Where(b => b.Id == updatedBooking.Id).FirstOrDefault();
-
-            if(bookingToUpdate != null)
+           var bookingToUpdate = _carDbContext.Bookings.Where(b => b.Id == updatedBooking.Id).FirstOrDefault();
+           
+            
+            if (bookingToUpdate != null)
             {
+                bookingToUpdate.CarModel = updatedBooking.CarModel;
+                bookingToUpdate.StartDate = updatedBooking.StartDate;
+                bookingToUpdate.EndDate = updatedBooking.EndDate;
+                
+
                 _carDbContext.Bookings.Update(updatedBooking);
 
                 _carDbContext.ChangeTracker.DetectChanges();
-                Console.WriteLine(_carDbContext.ChangeTracker.DebugView.LongView);
-
                 _carDbContext.SaveChanges();
+
+                Console.WriteLine(_carDbContext.ChangeTracker.DebugView.LongView);
+            }  
+            else 
+            { 
+                throw new ArgumentException("Booking to be updated cannot be found");
             }
-            else
-            {
-                throw new ArgumentException("The booking to edit cannot be found.");
-            }
+            
         }
 
         public IEnumerable<Booking> GetAllBookings()
