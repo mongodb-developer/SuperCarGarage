@@ -5,11 +5,13 @@ using SuperCarGarage.Models;
 
 namespace SuperCarBookingSystem.Services
 {
-    public class CarDbContext : DbContext
+    public class CarBookingDbContext : DbContext
     {
         public DbSet<Car> Cars { get; init; }      
 
-        public CarDbContext(DbContextOptions options)
+        public DbSet<Booking> Bookings { get; init; }
+
+        public CarBookingDbContext(DbContextOptions options)
         : base(options)
         {
         }
@@ -18,6 +20,8 @@ namespace SuperCarBookingSystem.Services
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Car>().ToCollection("cars");          }
+            modelBuilder.Entity<Car>().ToCollection("cars");
+            modelBuilder.Entity<Booking>().ToCollection("bookings");
+        }
     }
 }

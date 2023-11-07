@@ -37,6 +37,10 @@ else
                 <td>
                     <a asp-action="Edit" asp-route-id="@car.Id.ToString()">Edit</a>
                     <a asp-action="Delete" asp-route-id="@car.Id.ToString()">Delete</a>
+                    @if(!car.IsBooked)
+                    {
+                        <a asp-controller="Booking" asp-action="Add" asp-route-carId="@car.Id.ToString()">Book</a>
+                    }                    
                 </td>
             </tr>
         }

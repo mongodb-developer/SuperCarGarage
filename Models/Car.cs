@@ -24,5 +24,7 @@ namespace SuperCarGarage.Models
 
         [Required(ErrorMessage = "You must add the location of the car")]
         public string? Location { get; set; }
+
+        public bool IsBooked { get; set; } = false;
     }
 }

@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using MongoDB.Driver;
 using SuperCarBookingSystem.Services;
 using SuperCarGarage.Models;
 using SuperCarGarage.Services;
@@ -11,11 +12,12 @@ builder.Services.AddControllersWithViews();
 var mongoDBSettings = builder.Configuration.GetSection("MongoDBSettings").Get<MongoDBSettings>();
 builder.Services.Configure<MongoDBSettings>(builder.Configuration.GetSection("MongoDBSettings"));
 
-builder.Services.AddDbContext<CarDbContext>(options =>
+builder.Services.AddDbContext<CarBookingDbContext>(options =>
 options.UseMongoDB(mongoDBSettings.AtlasURI ?? "", mongoDBSettings.DatabaseName ?? ""));
 
 
 builder.Services.AddScoped<ICarService, CarService>();
+builder.Services.AddScoped<IBookingService, BookingService>();
 
 var app = builder.Build();
 

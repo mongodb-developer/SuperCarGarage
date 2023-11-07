@@ -8,8 +8,8 @@ namespace SuperCarGarage.Services
 {
     public class CarService : ICarService
     {
-        private readonly CarDbContext _carDbContext;
-        public CarService(CarDbContext carDbContext)
+        private readonly CarBookingDbContext _carDbContext;
+        public CarService(CarBookingDbContext carDbContext)
         {
             _carDbContext = carDbContext;
         }
@@ -43,6 +43,7 @@ namespace SuperCarGarage.Services
                 carToUpdate.Model = car.Model;
                 carToUpdate.NumberPlate = car.NumberPlate;
                 carToUpdate.Location = car.Location;
+                carToUpdate.IsBooked = car.IsBooked;
 
                 _carDbContext.Cars.Update(carToUpdate);
 
