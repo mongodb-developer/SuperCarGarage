@@ -56,7 +56,7 @@ namespace SuperCarGarage.Controllers
 
         public IActionResult Edit(string Id)
         {
-            if(Id == null)
+            if(Id == null || string.IsNullOrEmpty(Id))
             {
                 return NotFound();
             }
@@ -91,7 +91,7 @@ namespace SuperCarGarage.Controllers
 
         public IActionResult Delete(string Id)
         {
-            if (Id == null)
+            if (Id == null || string.IsNullOrEmpty(Id))
             {
                 return NotFound();
             }

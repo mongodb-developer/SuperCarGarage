@@ -59,5 +59,35 @@ namespace SuperCarGarage.Tests.Mocks
             mockCarService.Setup(service => service.AddCar(carToAdd));
             return mockCarService;
         }
+
+        public static Mock<IBookingService> GetBookingService()
+        {
+            var bookings = new List<Booking>
+            {
+               new Booking()
+               {
+                   CarId = new ObjectId(),
+                   CarModel = "VW Golf",
+                   StartDate = DateTime.Now,
+                   EndDate = DateTime.Now.AddDays(7)
+               },
+               new Booking()
+               {
+                   CarId = new ObjectId(),
+                   CarModel = "VW Polo",
+                   StartDate = DateTime.Now,
+                   EndDate = DateTime.Now.AddDays(5)
+               }
+            };
+
+            var mockBookingService = new Mock<IBookingService>();
+
+            mockBookingService.Setup(service => service.GetAllBookings()).Returns(bookings);
+  
+            mockBookingService.Setup(service => service.GetBookingById(It.IsAny<string>()))
+                .Returns((string id) => bookings.FirstOrDefault(b => b.Id.ToString() == id));
+
+            return mockBookingService;
+        }
     }
 }
