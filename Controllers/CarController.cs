@@ -49,7 +49,7 @@ namespace SuperCarGarage.Controllers
 
         public IActionResult Edit(string id)
         {
-            if(id == null)
+            if(id == null || string.IsNullOrEmpty(id))
             {
                 return NotFound();
             }
@@ -82,7 +82,7 @@ namespace SuperCarGarage.Controllers
         }
 
         public IActionResult Delete(string id) {
-            if (id == null)
+            if (id == null || string.IsNullOrEmpty(id))
             {
                 return NotFound();
             }
@@ -94,7 +94,7 @@ namespace SuperCarGarage.Controllers
         [HttpPost]
         public IActionResult Delete(Car car)
         {
-            if (car.Id == null)
+            if (car.Id == null || car.Id == ObjectId.Empty)
             {
                 ViewData["ErrorMessage"] = "Deleting the car failed, invalid ID!";
                 return View();
