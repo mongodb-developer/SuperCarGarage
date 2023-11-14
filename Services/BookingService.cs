@@ -86,7 +86,7 @@ namespace SuperCarGarage.Services
 
         public IEnumerable<Booking> GetAllBookings()
         {
-            return _carDbContext.Bookings.OrderBy(b => b.StartDate).AsNoTracking().ToList();
+            return _carDbContext.Bookings.OrderBy(b => b.StartDate).AsNoTracking().AsEnumerable<Booking>();
         }
 
         public Booking? GetBookingById(string id)

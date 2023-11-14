@@ -1,4 +1,5 @@
-﻿using MongoDB.Driver;
+﻿using MongoDB.Bson;
+using MongoDB.Driver;
 using SuperCarGarage.Models;
 
 namespace SuperCarGarage.Services
@@ -6,7 +7,7 @@ namespace SuperCarGarage.Services
     public interface ICarService
     {
         IEnumerable<Car> GetAllCars();
-        Car? GetCarById(string id);
+        Car? GetCarById(ObjectId id);
 
         void AddCar(Car newCar);
 

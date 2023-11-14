@@ -47,9 +47,9 @@ namespace SuperCarGarage.Controllers
             return View(carAddViewModel);         
         }
 
-        public IActionResult Edit(string id)
+        public IActionResult Edit(ObjectId id)
         {
-            if(id == null || string.IsNullOrEmpty(id))
+            if(id == null || id == ObjectId.Empty)
             {
                 return NotFound();
             }
@@ -81,8 +81,8 @@ namespace SuperCarGarage.Controllers
             return View(car);
         }
 
-        public IActionResult Delete(string id) {
-            if (id == null || string.IsNullOrEmpty(id))
+        public IActionResult Delete(ObjectId id) {
+            if (id == null || id == ObjectId.Empty)
             {
                 return NotFound();
             }
@@ -112,7 +112,7 @@ namespace SuperCarGarage.Controllers
                 ViewData["ErrorMessage"] = $"Deleting the car failed, please try again! Error: {ex.Message}";
             }
 
-            var selectedCar = _carService.GetCarById(car.Id.ToString());
+            var selectedCar = _carService.GetCarById(car.Id);
             return View(selectedCar);
         }        
     }

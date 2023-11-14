@@ -20,8 +20,8 @@ namespace SuperCarBookingSystem.Services
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Car>().ToCollection("cars");
-            modelBuilder.Entity<Booking>().ToCollection("bookings");
+            modelBuilder.Entity<Car>();
+            modelBuilder.Entity<Booking>();
         }
     }
 }

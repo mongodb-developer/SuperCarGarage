@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MongoDB.Bson;
 using SuperCarGarage.Models;
 using SuperCarGarage.Services;
 using SuperCarGarage.ViewModels;
@@ -25,7 +26,7 @@ namespace SuperCarGarage.Controllers
             return View(viewModel);
         }
 
-        public IActionResult Add(string carId)
+        public IActionResult Add(ObjectId carId)
         {
             var selectedCar = _carService.GetCarById(carId);
             
