@@ -70,7 +70,7 @@ namespace SuperCarGarage.Services
                 bookingToUpdate.EndDate = updatedBooking.EndDate;
                 
 
-                _carDbContext.Bookings.Update(updatedBooking);
+                _carDbContext.Bookings.Update(bookingToUpdate);
 
                 _carDbContext.ChangeTracker.DetectChanges();
                 _carDbContext.SaveChanges();
