@@ -97,7 +97,7 @@ namespace SuperCarGarage.Controllers
                 return NotFound();
             }
 
-            var selectedBooking = _bookingService;
+            var selectedBooking = _bookingService.GetBookingById(new ObjectId(Id));
             return View(selectedBooking);
         }
 
