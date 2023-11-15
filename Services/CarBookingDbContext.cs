@@ -1,9 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MongoDB.Driver;
-using MongoDB.EntityFrameworkCore.Extensions;
 using SuperCarGarage.Models;
 
-namespace SuperCarBookingSystem.Services
+namespace SuperCarGarage.Services
 {
     public class CarBookingDbContext : DbContext
     {

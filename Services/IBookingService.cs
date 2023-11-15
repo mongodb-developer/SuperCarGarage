@@ -1,11 +1,12 @@
-﻿using SuperCarGarage.Models;
+﻿using MongoDB.Bson;
+using SuperCarGarage.Models;
 
 namespace SuperCarGarage.Services
 {
     public interface IBookingService
     {
         IEnumerable<Booking> GetAllBookings();
-        Booking? GetBookingById(string id);
+        Booking? GetBookingById(ObjectId id);
 
         void AddBooking(Booking newBooking);
 

@@ -1,7 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MongoDB.Bson;
-using SharpCompress.Common;
-using SuperCarBookingSystem.Services;
 using SuperCarGarage.Models;
 
 namespace SuperCarGarage.Services
@@ -16,7 +14,7 @@ namespace SuperCarGarage.Services
         }
         public void AddBooking(Booking newBooking)
         {
-            var bookedCar = _carDbContext.Cars.Where(c => c.Id ==  newBooking.CarId).FirstOrDefault();
+            var bookedCar = _carDbContext.Cars.FirstOrDefault(c => c.Id == newBooking.CarId);
             if (bookedCar == null)
             {
                 throw new ArgumentException("The car to be booked cannot be found.");
@@ -37,10 +35,10 @@ namespace SuperCarGarage.Services
 
         public void DeleteBooking(Booking booking)
         {
-            var bookedCar = _carDbContext.Cars.Where(c => c.Id == booking.CarId).FirstOrDefault();
+            var bookedCar = _carDbContext.Cars.FirstOrDefault(c => c.Id == booking.CarId);
             bookedCar.IsBooked = false;
 
-            var bookingToDelete = _carDbContext.Bookings.Where(b => b.Id == booking.Id).FirstOrDefault();
+            var bookingToDelete = _carDbContext.Bookings.FirstOrDefault(b => b.Id == booking.Id);
 
             if(bookingToDelete != null)
             {
@@ -60,12 +58,11 @@ namespace SuperCarGarage.Services
 
         public void EditBooking(Booking updatedBooking)
         {
-           var bookingToUpdate = _carDbContext.Bookings.Where(b => b.Id == updatedBooking.Id).FirstOrDefault();
+           var bookingToUpdate = _carDbContext.Bookings.FirstOrDefault(b => b.Id == updatedBooking.Id);
            
             
             if (bookingToUpdate != null)
-            {
-                bookingToUpdate.CarModel = updatedBooking.CarModel;
+            {               
                 bookingToUpdate.StartDate = updatedBooking.StartDate;
                 bookingToUpdate.EndDate = updatedBooking.EndDate;
                 
@@ -89,9 +86,9 @@ namespace SuperCarGarage.Services
             return _carDbContext.Bookings.OrderBy(b => b.StartDate).AsNoTracking().AsEnumerable<Booking>();
         }
 
-        public Booking? GetBookingById(string id)
+        public Booking? GetBookingById(ObjectId id)
         {
-            return _carDbContext.Bookings.Where(b => b.Id.ToString() == id).AsNoTracking().FirstOrDefault();
+            return _carDbContext.Bookings.AsNoTracking().FirstOrDefault(b => b.Id == id);
         }
         
     }

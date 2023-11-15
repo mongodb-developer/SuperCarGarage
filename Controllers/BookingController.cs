@@ -62,7 +62,7 @@ namespace SuperCarGarage.Controllers
                 return NotFound();
             }
 
-            var selectedBooking = _bookingService.GetBookingById(Id);
+            var selectedBooking = _bookingService.GetBookingById(new ObjectId(Id));
             return View(selectedBooking);
         }
 
@@ -71,10 +71,10 @@ namespace SuperCarGarage.Controllers
         {
             try
             {
-                var existingBooking = _bookingService.GetBookingById(booking.Id.ToString());
+                var existingBooking = _bookingService.GetBookingById(booking.Id);
                 if (existingBooking != null)
                 {
-                    _bookingService.EditBooking(existingBooking);
+                    _bookingService.EditBooking(booking);
                     return RedirectToAction("Index");
                 }
                 else
@@ -97,7 +97,7 @@ namespace SuperCarGarage.Controllers
                 return NotFound();
             }
 
-            var selectedBooking = _bookingService.GetBookingById(Id);
+            var selectedBooking = _bookingService;
             return View(selectedBooking);
         }
 
@@ -122,7 +122,7 @@ namespace SuperCarGarage.Controllers
                 ViewData["ErrorMessage"] = $"Deleting the booking failed, please try again! Error: {ex.Message}";
             }
 
-            var selectedCar = _bookingService.GetBookingById(booking.Id.ToString());
+            var selectedCar = _bookingService.GetBookingById(booking.Id);
             return View(selectedCar);
         }
     }
