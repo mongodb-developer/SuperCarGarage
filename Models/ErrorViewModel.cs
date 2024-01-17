@@ -1,4 +1,4 @@
-namespace SuperCarGarage.Models;
+﻿namespace SuperCarGarage.Models;
 
 public class ErrorViewModel
 {

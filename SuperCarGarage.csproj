@@ -11,4 +11,9 @@
     <PackageReference Include="MongoDB.EntityFrameworkCore" Version="7.0.0-preview.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\" />
+    <Folder Include="ViewModels\" />
+  </ItemGroup>
+
 </Project>

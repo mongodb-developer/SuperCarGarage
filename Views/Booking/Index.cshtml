@@ -1,18 +1,4 @@
-﻿@model BookingListViewModel
-
-@if (TempData["BookingDeleted"] != null)
-{
-    <p class="text-success">@TempData["BookingDeleted"]</p>
-}
-
-@if (!Model.Bookings.Any())
-{
-    <p>No results</p>
-}
-
-else
-{    
-    <table class="table table-condensed table-bordered">
+﻿    <table class="table table-condensed table-bordered">
         <tr>
             <th>
                 Booked Car
@@ -26,21 +12,6 @@ else
             <th>
                 Actions
             </th>
-        </tr>
-
-        @foreach(var booking in Model.Bookings)
-        {
-            <tr>
-                <td>@booking.CarModel</td>
-                <td>@booking.StartDate</td>
-                <td>@booking.EndDate</td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@booking.Id.ToString()">Edit</a>
-                    <a asp-action="Delete" asp-route-id="@booking.Id.ToString()">Delete</a>
-                </td>
-            </tr>
-        }
+        </tr>       
 
     </table>   
-
-}

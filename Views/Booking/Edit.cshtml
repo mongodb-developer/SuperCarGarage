@@ -1,22 +1,9 @@
-﻿@model Booking
+﻿
 
-<h2>Editing booking for @Model.CarModel between @Model.StartDate and @Model.EndDate</h2>
+<h2>Editing booking</h2>
 <hr />
 
-<form method="post" asp-controller="Booking" asp-action="Edit">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <input type="hidden" asp-for="Id" />
-
-    <div class="mb-3">
-        <label asp-for="StartDate" class="form-label"></label>
-        <input asp-for="StartDate" class="form-control" />
-        <span asp-validation-for="StartDate" class="text-danger" />
-    </div>
-    <div class="mb-3">
-        <label asp-for="EndDate" class="form-label"></label>
-        <input asp-for="EndDate" class="form-control" />
-        <span asp-validation-for="EndDate" class="text-danger" />
-    </div>  
+<form method="post" asp-controller="Booking" asp-action="Edit">    
     <input type="submit" value="Update booking" class="btn btn-primary" />
 </form>
 <div>

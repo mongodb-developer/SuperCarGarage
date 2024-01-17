@@ -1,4 +1,4 @@
-﻿@model BookingAddViewModel
+﻿
 
 
 @if (ViewData["ErrorMessage"] != null)
@@ -7,20 +7,7 @@
 }
 
 <form method="post" asp-controller="Booking" asp-action="Add">
-    <div asp-validation-summary="All" class="text-danger"></div>
-    <input type="hidden" asp-for="Booking.Id" />
-    <input type="hidden" asp-for="Booking.CarId" />
-
-    <div class="mb-3">
-        <label asp-for="Booking.StartDate" class="form-label"></label>
-        <input asp-for="Booking.StartDate" type="date" class="form-control" />
-        <span asp-validation-for="Booking.StartDate" class="text-danger"></span>
-    </div>
-    <div class="mb-3">
-        <label asp-for="Booking.EndDate" class="form-label"></label>
-        <input asp-for="Booking.EndDate" type="date" class="form-control" />
-        <span asp-validation-for="Booking.EndDate" class="text-danger"></span>
-    </div>
+    <div asp-validation-summary="All" class="text-danger"></div>   
 
     <input type="submit" value="Book car" class="btn btn-primary" />
 </form>
